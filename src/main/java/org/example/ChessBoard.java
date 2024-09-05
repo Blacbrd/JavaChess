@@ -1,7 +1,11 @@
 package org.example;
 
+import org.example.Pieces.Knight;
+import org.example.Pieces.Piece;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 // JPanel follows a flow layout (left to right), kind of like lines on a piece of paper
 public class ChessBoard extends JPanel {
@@ -11,16 +15,26 @@ public class ChessBoard extends JPanel {
     private final int columns = 8;
     private final int rows = 8;
 
+    private ArrayList<Piece> pieceArrayList = new ArrayList<>();
+
     public ChessBoard() {
 
         // Similar to "set size", however we have a layout manager (flow layout, along with minimum size)
         // So, setPreferredSize will give the initial size, while minimum size will only allow the user to make the window that small
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
 
+        addPieces();
+
     }
 
     public int getTileSize() {
         return tileSize;
+    }
+
+    public void addPieces(){
+
+        pieceArrayList.add(new Knight(this, 2, 0, false));
+
     }
 
     public void paintComponent(Graphics g){
@@ -38,6 +52,12 @@ public class ChessBoard extends JPanel {
                 graphics2D.fillRect(tileSize * j, tileSize * i, tileSize, tileSize);
 
             }
+
+        }
+
+        for (Piece piece : pieceArrayList){
+
+            piece.paint((graphics2D));
 
         }
 
