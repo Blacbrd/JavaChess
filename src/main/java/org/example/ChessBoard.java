@@ -33,6 +33,7 @@ public class ChessBoard extends JPanel {
     public void addPieces(){
 
         // I added this myself to prevent rewriting code
+        // Initialises all the chess pieces
         boolean tempBoolean;
         int tempWhatSideOfTheBoard = 0;
         int tempWhatSideOfTheBoardPawn = 1;
@@ -68,11 +69,30 @@ public class ChessBoard extends JPanel {
 
     }
 
+    // Goes through the piece array list to see what piece shares the same row and column as the piece we want
+    // Returns piece in that grid, if no piece exists, returns nothing
+    public Piece getPieceInGrid(int column, int row){
+
+        for(Piece piece : pieceArrayList){
+
+            if (piece.getRow() == row && piece.getColumn() == column){
+
+                return piece;
+
+            }
+
+        }
+
+        return null;
+
+    }
+
     public void paintComponent(Graphics g){
 
         // Like turtle in Python, allows us to draw/paint in GUI
         Graphics2D graphics2D = (Graphics2D) g;
 
+        // Draws in a rectangle for each row and column
         for(int i = 0; i < rows; i++){
 
             for(int j = 0; j < columns; j++){
@@ -86,6 +106,7 @@ public class ChessBoard extends JPanel {
 
         }
 
+        // For every piece in the piece array, draw it onto the chess board
         for (Piece piece : pieceArrayList){
 
             piece.paint((graphics2D));

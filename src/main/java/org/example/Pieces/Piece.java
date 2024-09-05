@@ -54,6 +54,14 @@ public abstract class Piece {
 
     }
 
+    public int getColumn() {
+        return column;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
     public void paint(Graphics2D graphics2D){
 
         graphics2D.drawImage(sprite, xPos, yPos, null);
