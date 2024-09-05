@@ -15,7 +15,7 @@ public abstract class Piece {
     int xPos, yPos;
 
     // What team it's on, its name, and what value it holds
-    boolean isWhite;
+    boolean isBlack;
     String name;
     int value;
 
@@ -44,9 +44,13 @@ public abstract class Piece {
     // Allows use of chess board object
     ChessBoard chessBoard;
 
-    public Piece(ChessBoard chessBoard){
+    public Piece(ChessBoard chessBoard, int column, int row, boolean isBlack){
 
         this.chessBoard = chessBoard;
+        this.row = row;
+        this.column = column;
+        this.isBlack = isBlack;
+
 
     }
 

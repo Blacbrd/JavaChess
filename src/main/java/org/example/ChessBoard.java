@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.Pieces.Knight;
-import org.example.Pieces.Piece;
+import org.example.Pieces.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +32,39 @@ public class ChessBoard extends JPanel {
 
     public void addPieces(){
 
-        pieceArrayList.add(new Knight(this, 2, 0, false));
+        // I added this myself to prevent rewriting code
+        boolean tempBoolean;
+        int tempWhatSideOfTheBoard = 0;
+        int tempWhatSideOfTheBoardPawn = 1;
+        for (int j = 0; j < 2; j++) {
+
+            tempBoolean = j == 0;
+
+            if(!tempBoolean){
+
+                tempWhatSideOfTheBoard = 7;
+                tempWhatSideOfTheBoardPawn = 6;
+
+            }
+
+            pieceArrayList.add(new Rook(this, 0, tempWhatSideOfTheBoard, tempBoolean));
+            pieceArrayList.add(new Rook(this, 7, tempWhatSideOfTheBoard, tempBoolean));
+
+            pieceArrayList.add(new Bishop(this, 1, tempWhatSideOfTheBoard, tempBoolean));
+            pieceArrayList.add(new Bishop(this, 6, tempWhatSideOfTheBoard, tempBoolean));
+
+            pieceArrayList.add(new Knight(this, 2, tempWhatSideOfTheBoard, tempBoolean));
+            pieceArrayList.add(new Knight(this, 5, tempWhatSideOfTheBoard, tempBoolean));
+
+            pieceArrayList.add(new Queen(this, 3, tempWhatSideOfTheBoard, tempBoolean));
+            pieceArrayList.add(new King(this, 4, tempWhatSideOfTheBoard, tempBoolean));
+
+            for (int i = 0; i < 8; i++) {
+
+                pieceArrayList.add(new Pawn(this, i, tempWhatSideOfTheBoardPawn, tempBoolean));
+
+            }
+        }
 
     }
 
