@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Movement.Move;
 import org.example.Pieces.*;
 
 import javax.swing.*;
@@ -16,6 +17,8 @@ public class ChessBoard extends JPanel {
 
     private ArrayList<Piece> pieceArrayList = new ArrayList<>();
 
+    private Piece selectedPiece;
+
     public ChessBoard() {
 
         // Similar to "set size", however we have a layout manager (flow layout, along with minimum size)
@@ -30,6 +33,14 @@ public class ChessBoard extends JPanel {
         return tileSize;
     }
 
+    public Piece getSelectedPiece(){
+        return selectedPiece;
+    }
+
+    public void setSelectedPiece(Piece piece){
+        this.selectedPiece = piece;
+    }
+
     public void addPieces(){
 
         // I added this myself to prevent rewriting code
@@ -37,6 +48,7 @@ public class ChessBoard extends JPanel {
         boolean tempBoolean;
         int tempWhatSideOfTheBoard = 0;
         int tempWhatSideOfTheBoardPawn = 1;
+
         for (int j = 0; j < 2; j++) {
 
             tempBoolean = j == 0;
@@ -84,6 +96,21 @@ public class ChessBoard extends JPanel {
         }
 
         return null;
+
+    }
+
+    // Moves the piece to its new location
+    public void makeMove(Move move){
+
+        move.getPiece().setColumn(move.getNewColumn());
+
+        // VIDEO IS AT 12 MINUTES!!!!!!!!!!!!!!!!!!!!
+
+    }
+
+    public boolean isValidMove(Move move){
+
+        return true;
 
     }
 

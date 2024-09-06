@@ -10,9 +10,6 @@ public class Knight extends Piece{
 
         super(chessBoard, column, row, isBlack);
 
-
-
-
         this.name = "Knight";
 
         // getSubImage(top left x, top left y, size of square x,  size of square y)
@@ -20,10 +17,6 @@ public class Knight extends Piece{
         // Get scaled instance resizes the image
         this.sprite = spriteSheet.getSubimage(sheetScale * 3, isBlack ? 0 : sheetScale, sheetScale, sheetScale).getScaledInstance(chessBoard.getTileSize(), chessBoard.getTileSize(), BufferedImage.SCALE_SMOOTH);
 
-        // This is the position of the Knight chess piece
-        // if in 5th row, 6th column, then position is (510, 425)
-        this.xPos = column * chessBoard.getTileSize();
-        this.yPos = row * chessBoard.getTileSize();
 
     }
 }

@@ -10,9 +10,6 @@ public class Bishop extends Piece{
 
         super(chessBoard, column, row, isBlack);
 
-        this.xPos = column * chessBoard.getTileSize();
-        this.yPos = row * chessBoard.getTileSize();
-
         this.name = "Bishop";
 
         this.sprite = spriteSheet.getSubimage(sheetScale * 4, isBlack ? 0 : sheetScale, sheetScale, sheetScale).getScaledInstance(chessBoard.getTileSize(), chessBoard.getTileSize(), BufferedImage.SCALE_SMOOTH);

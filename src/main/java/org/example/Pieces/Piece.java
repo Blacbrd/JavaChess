@@ -51,15 +51,45 @@ public abstract class Piece {
         this.column = column;
         this.isBlack = isBlack;
 
+        // This is the position of the Knight chess piece
+        // if in 5th row, 6th column, then position is (510, 425)
+        this.xPos = column * chessBoard.getTileSize();
+        this.yPos = row * chessBoard.getTileSize();
+
 
     }
+
 
     public int getColumn() {
         return column;
     }
 
+    public void setColumn(int column){
+        this.column = column;
+    }
+
     public int getRow() {
         return row;
+    }
+
+    public void setRow(int row){
+        this.row = row;
+    }
+
+    public int getxPos(){
+        return  xPos;
+    }
+
+    public int getyPos() {
+        return yPos;
+    }
+
+    public void setxPos(int xPos){
+        this.xPos = xPos;
+    }
+
+    public void setyPos(int yPos){
+        this.yPos = yPos;
     }
 
     public void paint(Graphics2D graphics2D){

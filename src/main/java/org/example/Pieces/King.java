@@ -10,9 +10,6 @@ public class King extends Piece{
 
         super(chessBoard, column, row, isBlack);
 
-        this.xPos = column * chessBoard.getTileSize();
-        this.yPos = row * chessBoard.getTileSize();
-
         this.name = "King";
 
         this.sprite = spriteSheet.getSubimage(sheetScale, isBlack ? 0 : sheetScale, sheetScale, sheetScale).getScaledInstance(chessBoard.getTileSize(), chessBoard.getTileSize(), BufferedImage.SCALE_SMOOTH);
