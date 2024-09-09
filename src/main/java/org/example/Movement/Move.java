@@ -14,6 +14,7 @@ public class Move {
     Piece piece;
     Piece capture;
 
+    // Allows us to move the chess pieces to new cells
     public Move(ChessBoard chessBoard, Piece piece, int newColumn, int newRow){
 
         // Where the piece is travelling to
@@ -47,6 +48,10 @@ public class Move {
 
     public int getNewRow(){
         return  newRow;
+    }
+
+    public Piece getCapture(){
+        return capture;
     }
 
 

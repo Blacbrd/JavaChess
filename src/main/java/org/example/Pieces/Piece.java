@@ -92,6 +92,10 @@ public abstract class Piece {
         this.yPos = yPos;
     }
 
+    public boolean getIsBlack(){
+        return isBlack;
+    }
+
     public void paint(Graphics2D graphics2D){
 
         graphics2D.drawImage(sprite, xPos, yPos, null);

@@ -102,15 +102,41 @@ public class ChessBoard extends JPanel {
     // Moves the piece to its new location
     public void makeMove(Move move){
 
+        // Updates the pieces x and y position, as well as what grid it is a part of
         move.getPiece().setColumn(move.getNewColumn());
+        move.getPiece().setRow(move.getNewRow());
+        move.getPiece().setxPos(move.getNewColumn() * tileSize);
+        move.getPiece().setyPos(move.getNewRow() * tileSize);
 
-        // VIDEO IS AT 12 MINUTES!!!!!!!!!!!!!!!!!!!!
+        // Remove the piece from the board
+        capture(move);
+
+
+    }
+
+    public void capture(Move move){
+
+        // Removes piece from the list, meaning that it does not exist in the game anymore
+        pieceArrayList.remove(move.getCapture());
 
     }
 
     public boolean isValidMove(Move move){
 
-        return true;
+        // If on same team, return false as it is not a valid move
+        return !sameTeam(move.getPiece(), move.getCapture());
+        
+
+    }
+
+    public boolean sameTeam(Piece piece1, Piece piece2){
+
+        if(piece1 == null || piece2 == null){
+            return false;
+        }
+
+        // If both on the same team, return true, as true == true
+        return piece1.getIsBlack() == piece2.getIsBlack();
 
     }
 
