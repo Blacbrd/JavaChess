@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Movement.Input;
 import org.example.Movement.Move;
 import org.example.Pieces.*;
 
@@ -19,11 +20,16 @@ public class ChessBoard extends JPanel {
 
     private Piece selectedPiece;
 
+    private Input input = new Input(this);
+
     public ChessBoard() {
 
         // Similar to "set size", however we have a layout manager (flow layout, along with minimum size)
         // So, setPreferredSize will give the initial size, while minimum size will only allow the user to make the window that small
         this.setPreferredSize(new Dimension(columns * tileSize, rows * tileSize));
+
+        this.addMouseListener(input);
+        this.addMouseMotionListener(input);
 
         addPieces();
 
@@ -124,8 +130,21 @@ public class ChessBoard extends JPanel {
     public boolean isValidMove(Move move){
 
         // If on same team, return false as it is not a valid move
-        return !sameTeam(move.getPiece(), move.getCapture());
-        
+        if(sameTeam(move.getPiece(), move.getCapture())){
+            return false;
+        }
+
+        // If the piece does not make a legal move set out in its class, then it won't move there
+        if(!move.getPiece().isValidMovement(move.getNewColumn(), move.getNewRow())){
+            return false;
+        }
+
+        // If the piece comes into contact with another piece, it cannot move there
+        if(move.getPiece().moveCollidesWithPiece(move.getNewColumn(), move.getNewRow())){
+            return false;
+        }
+
+        return true;
 
     }
 
@@ -157,6 +176,22 @@ public class ChessBoard extends JPanel {
 
             }
 
+        }
+
+        // For every row and column (each grid), and if a piece is selected
+        if(selectedPiece != null) {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+
+                    if (!isValidMove(new Move(this, selectedPiece, j, i))) {
+                        continue;
+                    }
+                    // If it is a valid move, set the colour of the grid to green, to indicate that you can move there
+                    graphics2D.setColor(new Color(0, 255, 81, 173));
+                    graphics2D.fillRect(j * tileSize, i * tileSize, tileSize, tileSize);
+                }
+
+            }
         }
 
         // For every piece in the piece array, draw it onto the chess board

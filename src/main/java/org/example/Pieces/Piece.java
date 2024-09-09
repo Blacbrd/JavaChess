@@ -59,7 +59,6 @@ public abstract class Piece {
 
     }
 
-
     public int getColumn() {
         return column;
     }
@@ -95,6 +94,10 @@ public abstract class Piece {
     public boolean getIsBlack(){
         return isBlack;
     }
+
+    // These two methods are going to be overridden, therefore they are abstract
+    public abstract boolean isValidMovement(int column, int row);
+    public abstract boolean moveCollidesWithPiece(int column, int row);
 
     public void paint(Graphics2D graphics2D){
 

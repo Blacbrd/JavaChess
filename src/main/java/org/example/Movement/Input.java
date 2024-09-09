@@ -51,14 +51,21 @@ public class Input extends MouseAdapter {
         Move move = new Move(chessBoard, chessBoard.getSelectedPiece(), column, row);
 
         // If valid move, make the move, if not, move the chess piece back to its original position
-        // Like a snap back
+        // To us, it'll look like the chess piece hasn't moved
         if (chessBoard.isValidMove(move)){
             chessBoard.makeMove(move);
         } else  {
 
+            // Moves back to original location
             chessBoard.getSelectedPiece().setxPos(chessBoard.getSelectedPiece().getColumn() * chessBoard.getTileSize());
             chessBoard.getSelectedPiece().setyPos(chessBoard.getSelectedPiece().getRow() * chessBoard.getTileSize());
         }
+
+        // Deselect current chess piece once mouse has been released to allow for selection of different piece
+        chessBoard.setSelectedPiece(null);
+
+        // Update the chessboard
+        chessBoard.repaint();
 
 
 
@@ -73,8 +80,8 @@ public class Input extends MouseAdapter {
         }
 
         // We take away tile size / 2 since this will centre the chess piece
-        chessBoard.getSelectedPiece().setxPos(mouseEvent.getX() - chessBoard.getTileSize() / 2);
-        chessBoard.getSelectedPiece().setyPos(mouseEvent.getY() - chessBoard.getTileSize() / 2);
+        chessBoard.getSelectedPiece().setxPos(mouseEvent.getX() - (chessBoard.getTileSize() / 2));
+        chessBoard.getSelectedPiece().setyPos(mouseEvent.getY() - (chessBoard.getTileSize() / 2));
 
         // We need to repaint the board to show the new location of the chess piece
         chessBoard.repaint();
