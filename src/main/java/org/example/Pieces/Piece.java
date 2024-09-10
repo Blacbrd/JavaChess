@@ -19,6 +19,9 @@ public abstract class Piece {
     String name;
     int value;
 
+    // Checks if this is the piece's first move
+    boolean isFirstMove;
+
     // Loads in the sprite sheet
     BufferedImage spriteSheet;
 
@@ -56,6 +59,8 @@ public abstract class Piece {
         this.xPos = column * chessBoard.getTileSize();
         this.yPos = row * chessBoard.getTileSize();
 
+        this.isFirstMove = true;
+
 
     }
 
@@ -83,11 +88,11 @@ public abstract class Piece {
         return yPos;
     }
 
-    public void setxPos(int xPos){
+    public void setXPos(int xPos){
         this.xPos = xPos;
     }
 
-    public void setyPos(int yPos){
+    public void setYPos(int yPos){
         this.yPos = yPos;
     }
 
@@ -95,7 +100,17 @@ public abstract class Piece {
         return isBlack;
     }
 
+    public boolean getIsFirstMove(){
+        return this.isFirstMove;
+    }
+
+    public void setIsFirstMove(boolean isFirstMove){
+        this.isFirstMove = isFirstMove;
+    }
+
     // These two methods are going to be overridden, therefore they are abstract
+    // isValidMovement allows the piece to only move in a certain way (to abide by the rules of the game)
+    // moveCollidesWithPiece prevents pieces from jumping over other pieces (to abide by the rules of the game)
     public abstract boolean isValidMovement(int column, int row);
     public abstract boolean moveCollidesWithPiece(int column, int row);
 

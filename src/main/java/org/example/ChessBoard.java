@@ -49,7 +49,7 @@ public class ChessBoard extends JPanel {
 
     public void addPieces(){
 
-        // I added this myself to prevent rewriting code
+        // *** DID THIS WITHOUT THE TUTORIAL ***
         // Initialises all the chess pieces
         boolean tempBoolean;
         int tempWhatSideOfTheBoard = 0;
@@ -111,8 +111,10 @@ public class ChessBoard extends JPanel {
         // Updates the pieces x and y position, as well as what grid it is a part of
         move.getPiece().setColumn(move.getNewColumn());
         move.getPiece().setRow(move.getNewRow());
-        move.getPiece().setxPos(move.getNewColumn() * tileSize);
-        move.getPiece().setyPos(move.getNewRow() * tileSize);
+        move.getPiece().setXPos(move.getNewColumn() * tileSize);
+        move.getPiece().setYPos(move.getNewRow() * tileSize);
+
+        move.getPiece().setIsFirstMove(false);
 
         // Remove the piece from the board
         capture(move);
@@ -139,7 +141,7 @@ public class ChessBoard extends JPanel {
             return false;
         }
 
-        // If the piece comes into contact with another piece, it cannot move there
+        // If the piece comes into contact with another piece, it cannot move past it
         if(move.getPiece().moveCollidesWithPiece(move.getNewColumn(), move.getNewRow())){
             return false;
         }

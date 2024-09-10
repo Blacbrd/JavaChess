@@ -14,4 +14,14 @@ public class King extends Piece{
 
         this.sprite = spriteSheet.getSubimage(sheetScale, isBlack ? 0 : sheetScale, sheetScale, sheetScale).getScaledInstance(chessBoard.getTileSize(), chessBoard.getTileSize(), BufferedImage.SCALE_SMOOTH);
     }
+
+    @Override
+    public boolean isValidMovement(int column, int row) {
+        return false;
+    }
+
+    @Override
+    public boolean moveCollidesWithPiece(int column, int row) {
+        return false;
+    }
 }

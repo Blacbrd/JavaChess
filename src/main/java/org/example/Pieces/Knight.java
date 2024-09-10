@@ -28,6 +28,7 @@ public class Knight extends Piece{
         return Math.abs(column - this.column) * Math.abs(row - this.row) == 2;
     }
 
+    // This stays like this as the Knight can jump over pieces
     @Override
     public boolean moveCollidesWithPiece(int column, int row) {
         return false;

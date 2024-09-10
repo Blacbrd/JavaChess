@@ -15,4 +15,14 @@ public class Pawn extends Piece{
         this.sprite = spriteSheet.getSubimage(sheetScale * 5, isBlack ? 0 : sheetScale, sheetScale, sheetScale).getScaledInstance(chessBoard.getTileSize(), chessBoard.getTileSize(), BufferedImage.SCALE_SMOOTH);
 
     }
+
+    @Override
+    public boolean isValidMovement(int column, int row) {
+        return true;
+    }
+
+    @Override
+    public boolean moveCollidesWithPiece(int column, int row) {
+        return false;
+    }
 }

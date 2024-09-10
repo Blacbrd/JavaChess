@@ -57,8 +57,8 @@ public class Input extends MouseAdapter {
         } else  {
 
             // Moves back to original location
-            chessBoard.getSelectedPiece().setxPos(chessBoard.getSelectedPiece().getColumn() * chessBoard.getTileSize());
-            chessBoard.getSelectedPiece().setyPos(chessBoard.getSelectedPiece().getRow() * chessBoard.getTileSize());
+            chessBoard.getSelectedPiece().setXPos(chessBoard.getSelectedPiece().getColumn() * chessBoard.getTileSize());
+            chessBoard.getSelectedPiece().setYPos(chessBoard.getSelectedPiece().getRow() * chessBoard.getTileSize());
         }
 
         // Deselect current chess piece once mouse has been released to allow for selection of different piece
@@ -80,8 +80,8 @@ public class Input extends MouseAdapter {
         }
 
         // We take away tile size / 2 since this will centre the chess piece
-        chessBoard.getSelectedPiece().setxPos(mouseEvent.getX() - (chessBoard.getTileSize() / 2));
-        chessBoard.getSelectedPiece().setyPos(mouseEvent.getY() - (chessBoard.getTileSize() / 2));
+        chessBoard.getSelectedPiece().setXPos(mouseEvent.getX() - (chessBoard.getTileSize() / 2));
+        chessBoard.getSelectedPiece().setYPos(mouseEvent.getY() - (chessBoard.getTileSize() / 2));
 
         // We need to repaint the board to show the new location of the chess piece
         chessBoard.repaint();
