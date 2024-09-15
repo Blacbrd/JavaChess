@@ -31,7 +31,6 @@ public class Move {
         // If there is another piece, it gets captured
         this.capture = chessBoard.getPieceInGrid(newColumn, newRow);
 
-
     }
 
     public Piece getPiece(){
@@ -52,6 +51,10 @@ public class Move {
 
     public Piece getCapture(){
         return capture;
+    }
+
+    public void setCapture(Piece piece){
+        this.capture = piece;
     }
 
 

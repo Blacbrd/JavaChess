@@ -80,12 +80,8 @@ public abstract class Piece {
         this.row = row;
     }
 
-    public int getxPos(){
-        return  xPos;
-    }
-
-    public int getyPos() {
-        return yPos;
+    public String getName(){
+        return this.name;
     }
 
     public void setXPos(int xPos){

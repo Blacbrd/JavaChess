@@ -67,8 +67,6 @@ public class Input extends MouseAdapter {
         // Update the chessboard
         chessBoard.repaint();
 
-
-
     }
 
 

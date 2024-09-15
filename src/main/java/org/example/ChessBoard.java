@@ -16,6 +16,8 @@ public class ChessBoard extends JPanel {
     private final int columns = 8;
     private final int rows = 8;
 
+    private int enPassantTile = -1;
+
     private ArrayList<Piece> pieceArrayList = new ArrayList<>();
 
     private Piece selectedPiece;
@@ -108,6 +110,10 @@ public class ChessBoard extends JPanel {
     // Moves the piece to its new location
     public void makeMove(Move move){
 
+        if (move.getPiece().getName().equals("Pawn")){
+            movePawn(move);
+        }
+
         // Updates the pieces x and y position, as well as what grid it is a part of
         move.getPiece().setColumn(move.getNewColumn());
         move.getPiece().setRow(move.getNewRow());
@@ -118,6 +124,20 @@ public class ChessBoard extends JPanel {
 
         // Remove the piece from the board
         capture(move);
+
+    }
+
+    public void movePawn(Move move){
+
+        // En Passant
+        int colourIndex = move.getPiece().getIsBlack() ? -1 : 1;
+
+        if (getTileNumber(move.getNewColumn(), move.getNewRow()) == enPassantTile){
+
+            // Sets the piece to be captured to the piece under the grid tile moved to
+            // For example, moving to row 2 while the passing pawn is on row 3 (as a white pawn)
+            move.setCapture((getPieceInGrid(move.getNewColumn(), move.getNewRow() + colourIndex)));
+        }
 
 
     }
@@ -158,6 +178,13 @@ public class ChessBoard extends JPanel {
 
         // If both on the same team, return true, as true == true
         return piece1.getIsBlack() == piece2.getIsBlack();
+
+    }
+
+    public int getTileNumber(int column, int row){
+
+        // Top left is 0, then going to the right is 1, 2, 3, 4, 5, 6, 7, then it moves down a column and row,and you get 8, 9, 10 and so on
+        return row * rows + column;
 
     }
 
