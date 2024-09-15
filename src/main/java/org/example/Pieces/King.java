@@ -17,7 +17,8 @@ public class King extends Piece{
 
     @Override
     public boolean isValidMovement(int column, int row) {
-        return false;
+        // If both are 1 (diagonal), or if one is 1 and the other is 0 (to the side or straight up)
+        return Math.abs(column - this.column) * Math.abs(row - this.row) == 1 || Math.abs(column - this.column) + Math.abs(row - this.row) == 1;
     }
 
     @Override
